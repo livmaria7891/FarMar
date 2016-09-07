@@ -55,6 +55,13 @@ describe "Testing Farmar" do
 
   end
 
+  it "Tests FarMar::Market.vendor returns an array of Vendors" do
+    tst = FarMar::Market.id(21)
+      expect(tst.vendors[0].class).must_equal(FarMar::Vendor)
+  end
+
+
+
   # it "Tests that self.id returns a hash" do
   #   tst = FarMar::Market.id(1)
   #   expect(tst.class).must_equal(FarMar::Market)

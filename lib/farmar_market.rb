@@ -39,8 +39,9 @@ class FarMar::Market
   def vendors
     vendors = []
     CSV.open('./support/vendors.csv','r').each do |line|
-      if line[3] == market[:id]
-        v = FarMar::Vendor.id(line[0])
+      #line[3].to_i == market[:id]
+      if line[3].to_i == market[:id]
+        v = FarMar::Vendor.id(line[3])
         vendors << v
       end
     end
@@ -51,6 +52,7 @@ class FarMar::Market
 end
 
 #print FarMar::Market.all
-#print tst.vendors.inspect
+
 # #print FarMar::Market.all
-# #print FarMar::Market.id(21)
+tst = FarMar::Market.id(21)
+print tst.vendors[0].class
