@@ -26,7 +26,7 @@ class FarMar::Market
     return all
   end
 
-  def self.id(id)
+  def self.find(id)
     CSV.open('./support/markets.csv','r').each do |line|
       if id == line[0].to_i
         return self.new(line[0],line[1],line[2],line[3],line[4],line[5],line[6])
@@ -39,9 +39,8 @@ class FarMar::Market
   def vendors
     vendors = []
     CSV.open('./support/vendors.csv','r').each do |line|
-      #line[3].to_i == market[:id]
       if line[3].to_i == market[:id]
-        v = FarMar::Vendor.id(line[3])
+        v = FarMar::Vendor.find(line[0])
         vendors << v
       end
     end
@@ -54,5 +53,5 @@ end
 #print FarMar::Market.all
 
 # #print FarMar::Market.all
-tst = FarMar::Market.id(21)
-print tst.vendors[0].class
+tst = FarMar::Market.find(21)
+print tst.vendors
