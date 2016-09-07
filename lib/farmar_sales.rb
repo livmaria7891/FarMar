@@ -17,6 +17,22 @@ class FarMar::Sales
       }
     end
 
+    def self.all
+      all = []
+      CSV.open('./support/sales.csv','r').each do |line|
+        all << self.new(line[0],line[1],line[2],line[3],line[4])
+      end
+      return all
+    end
+
+    def self.id(id)
+      CSV.open('./support/sales.csv','r').each do |line|
+        if id == line[0].to_i
+          return self.new(line[0],line[1],line[2],line[3],line[4])
+        end
+      end
+    end
+
   def vendor
     #returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id
   end

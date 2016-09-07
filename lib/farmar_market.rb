@@ -1,3 +1,5 @@
+#inheritance and composition notes
+
 require_relative '../far_mar.rb'
 require 'csv'
 
@@ -25,8 +27,8 @@ class FarMar::Market
   end
 
   def self.id(id)
-    CSV.open('../support/markets.csv','r').each do |line|
-      if id == line[0]
+    CSV.open('./support/markets.csv','r').each do |line|
+      if id == line[0].to_i
         return self.new(line[0],line[1],line[2],line[3],line[4],line[5],line[6])
       end
     end
@@ -36,7 +38,7 @@ class FarMar::Market
 
   def vendors
     vendors = []
-    CSV.open('../support/vendors.csv','r').each do |line|
+    CSV.open('./support/vendors.csv','r').each do |line|
       if line[3] == market[:id]
         v = FarMar::Vendor.id(line[0])
         vendors << v

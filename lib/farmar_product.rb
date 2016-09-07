@@ -9,6 +9,22 @@ class FarMar::Product
     }
   end
 
+  def self.all
+    all = []
+    CSV.open('./support/products.csv','r').each do |line|
+      all << self.new(line[0],line[1],line[2])
+    end
+    return all
+  end
+
+  def self.id(id)
+    CSV.open('./support/products.csv','r').each do |line|
+      if id == line[0].to_i
+        return self.new(line[0],line[1],line[2])
+      end
+    end
+  end
+
   def vendor
     #returns Vendor instance associated with this vendor using the FarMar::Product vendor_id field
   end

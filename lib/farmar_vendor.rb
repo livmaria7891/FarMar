@@ -13,14 +13,14 @@ class FarMar::Vendor
 
   def self.all
     @all = []
-    CSV.open('../support/vendors.csv','r').each do |line|
+    CSV.open('./support/vendors.csv','r').each do |line|
       @all << self.new(line[0],line[1],line[2],line[3])
     end
     return @all
   end
 
   def self.id(id)
-    CSV.open('../support/vendors.csv','r').each do |line|
+    CSV.open('./support/vendors.csv','r').each do |line|
       if id.to_s == line[0]
         return self.new(line[0],line[1],line[2],line[3])
       end
