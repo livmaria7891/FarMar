@@ -56,17 +56,32 @@ describe "Testing Farmar" do
 
   end
 
-  it "Tests FarMar::Market.vendor returns an array of Vendors" do
+  it "Tests FarMar::Market.vendor returns an array" do
     #skip
     tst = FarMar::Market.find(21)
       expect(tst.vendors.class).must_equal(Array)
   end
 
-  it "Tests FarMar::Vendor.markets returns an array of Markets" do
+  it "Tests FarMar::Vendor.markets returns an array" do
     #skip
     tst = FarMar::Vendor.find(1)
       expect(tst.market.class).must_equal(Array)
   end
+
+  it "Tests FarMar::Vendor.product returns an array" do
+    #skip
+    tst = FarMar::Vendor.find(1)
+      expect(tst.products.class).must_equal(Array)
+  end
+
+  it "Tests FarMar::Vendor.by_market returns an array" do
+    #skip
+      expect(FarMar::Vendor.by_market(1).class).must_equal(Array)
+  end
+
+
+
+
 
 
 

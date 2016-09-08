@@ -1,14 +1,13 @@
 #require_relative '../far_mar.rb'
 
 class FarMar::Product
-  attr_accessor :id, :name, :vendor
+  attr_accessor :id, :name, :vendor_id
+
   def initialize(id,name,vendor)
-
-      @id = id.to_i,
-      @name =  name,
-      @vendor =  vendor.to_i
-
-  end
+      @id = id.to_i
+      @name = name
+      @vendor_id = vendor.to_i
+    end
 
   def self.all
     all = []

@@ -46,6 +46,14 @@ class FarMar::Vendor
 
   def products
     #returns a collection of FarMar::Product instances associated by the FarMar::Product vendor_id
+    products = []
+    all_products = FarMar::Product.all
+      all_products.each do |product|
+       if product.vendor_id == @id
+         products << FarMar::Product.find(product.id)
+      end
+    end
+    return products
   end
 
   def sales
@@ -58,6 +66,8 @@ class FarMar::Vendor
 
   def self.by_market(market_id)
     #returns all the vendors with the given market_id
+    market = FarMar::Market.find(market_id)
+    return market.vendors
   end
 end
 

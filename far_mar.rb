@@ -26,5 +26,8 @@ require_relative 'lib/farmar_product.rb'
 # print tst.vendors
 
 # tst = FarMar::Vendor.find(12)
+# print tst.products
 # #print tst.inspect
 # print tst.market
+
+# print FarMar::Vendor.by_market(1)
