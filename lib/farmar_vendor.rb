@@ -1,25 +1,28 @@
-require_relative '../far_mar.rb'
+#require_relative '../far_mar.rb'
+
 
 class FarMar::Vendor
 
+  attr_accessor :id, :name, :num_of_employees, :market_id
+
   def initialize(id,name,num_of_employees,market_id)
-    @vendor = {
-    id: id,
-    name: name,
-    num_of_employees: num_of_employees,
-    market_id: market_id,
-    }
+
+    @id = id.to_i
+    @name = name
+    @num_of_employees = num_of_employees
+    @market_id = market_id.to_i
+
   end
 
   def self.all
-    @all = []
+    all = []
     CSV.open('./support/vendors.csv','r').each do |line|
-      @all << self.new(line[0],line[1],line[2],line[3])
+      all << self.new(line[0],line[1],line[2],line[3])
     end
-    return @all
+    return all
   end
 
-  def self.id(id)
+  def self.find(id)
     CSV.open('./support/vendors.csv','r').each do |line|
       if id.to_s == line[0]
         return self.new(line[0],line[1],line[2],line[3])
@@ -27,8 +30,18 @@ class FarMar::Vendor
     end
   end
 
+
+
   def market
       #returns Market instance associated with this vendor using Farmer::Vendor market_id field
+      markets = []
+      all_markets = FarMar::Market.all
+        all_markets.each do |market|
+        if market.id == @market_id
+          markets << FarMar::Market.find(@market_id)
+        end
+      end
+      return markets
   end
 
   def products
@@ -47,3 +60,8 @@ class FarMar::Vendor
     #returns all the vendors with the given market_id
   end
 end
+
+# #print FarMar::Vendor.all
+#  tst = FarMar::Vendor.find(1)
+#  #print tst.inspect
+# print tst.market

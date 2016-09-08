@@ -17,6 +17,7 @@ describe "Testing Farmar" do
   end
 
   it "Check that a new Sales instance can be created" do
+    skip
     tst = FarMar::Sales.new(1,2,3,4,5)
     expect(tst.class).must_equal(FarMar::Sales)
   end
@@ -41,32 +42,32 @@ describe "Testing Farmar" do
   end
 
   it "Tests that self.id returns an instance of self" do
-    tst = FarMar::Market.id(1)
+    tst = FarMar::Market.find(1)
     expect(tst.class).must_equal(FarMar::Market)
 
-    tst = FarMar::Product.id(1)
+    tst = FarMar::Product.find(1)
     expect(tst.class).must_equal(FarMar::Product)
 
-    tst = FarMar::Vendor.id(1)
+    tst = FarMar::Vendor.find(1)
     expect(tst.class).must_equal(FarMar::Vendor)
 
-    tst = FarMar::Sales.id(1)
+    tst = FarMar::Sales.find(1)
     expect(tst.class).must_equal(FarMar::Sales)
 
   end
 
   it "Tests FarMar::Market.vendor returns an array of Vendors" do
-    tst = FarMar::Market.id(21)
-      expect(tst.vendors[0].class).must_equal(FarMar::Vendor)
+    #skip
+    tst = FarMar::Market.find(21)
+      expect(tst.vendors.class).must_equal(Array)
   end
 
+  it "Tests FarMar::Vendor.markets returns an array of Markets" do
+    #skip
+    tst = FarMar::Vendor.find(1)
+      expect(tst.market.class).must_equal(Array)
+  end
 
-
-  # it "Tests that self.id returns a hash" do
-  #   tst = FarMar::Market.id(1)
-  #   expect(tst.class).must_equal(FarMar::Market)
-  #
-  # end
 
 
 

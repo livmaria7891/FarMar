@@ -1,21 +1,21 @@
 #inheritance and composition notes
 
-require_relative '../far_mar.rb'
+#require_relative '../far_mar.rb'
 require 'csv'
 
 class FarMar::Market
 
-  attr_accessor :market
+  attr_accessor :id, :name, :address, :city, :county, :state, :zip
   def initialize(id,name,address,city,county,state,zip)
-    @market = {
-      id: id.to_i,
-      name: name,
-      address: address,
-      city: city,
-      county: county,
-      state: state,
-      zip: zip,
-    }
+
+      @id = id.to_i
+      @name= name
+      @address = address
+      @city = city
+      @county = county
+      @state = state
+      @zip =zip
+
   end
 
   def self.all
@@ -35,12 +35,12 @@ class FarMar::Market
   end
 
 
-
   def vendors
     vendors = []
-    CSV.open('./support/vendors.csv','r').each do |line|
-      if line[3].to_i == market[:id]
-        v = FarMar::Vendor.find(line[0])
+    all_vendors = FarMar::Vendor.all
+    all_vendors.each do |v|
+      if v.market_id == @id
+        v = FarMar::Vendor.find(@id)
         vendors << v
       end
     end
@@ -49,9 +49,3 @@ class FarMar::Market
 
 
 end
-
-#print FarMar::Market.all
-
-# #print FarMar::Market.all
-tst = FarMar::Market.find(21)
-print tst.vendors

@@ -1,12 +1,13 @@
-require_relative '../far_mar.rb'
+#require_relative '../far_mar.rb'
 
 class FarMar::Product
+  attr_accessor :id, :name, :vendor
   def initialize(id,name,vendor)
-    @product = {
-      id: id.to_i,
-      name: name,
-      vendor: vendor.to_i
-    }
+
+      @id = id.to_i,
+      @name =  name,
+      @vendor =  vendor.to_i
+
   end
 
   def self.all
@@ -17,7 +18,7 @@ class FarMar::Product
     return all
   end
 
-  def self.id(id)
+  def self.find(id)
     CSV.open('./support/products.csv','r').each do |line|
       if id == line[0].to_i
         return self.new(line[0],line[1],line[2])

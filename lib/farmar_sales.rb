@@ -1,20 +1,16 @@
+require 'time'
 require_relative '../far_mar.rb'
 
 class FarMar::Sales
 
-    # ID - (Fixnum) uniquely identifies the sale
-    # Amount - (Fixnum) the amount of the transaction, in cents (i.e., 150 would be $1.50)
-    # Purchase_time - (Datetime) when the sale was completed
-    # Vendor_id - (Fixnum) a reference to which vendor completed the sale
-    # Product_id - (Fixnum) a reference to which product was sold
+    attr_accessor :id, :amount, :purchase_time, :vendor_id, :product_id
     def initialize(id,amount,purchase_time,vendor_id,product_id)
-      @sale = {
-        id: id,
-        amount: amount,
-        purchase_time: purchase_time,
-        vendor_id: vendor_id,
-        product_id: product_id
-      }
+        @id = id.to_i
+        @amount = amount.to_i
+        @purchase_time =  Time.parse(purchase_time)
+        @vendor_id = vendor_id.to_i
+        @product_id = product_id.to_i
+
     end
 
     def self.all
@@ -25,7 +21,7 @@ class FarMar::Sales
       return all
     end
 
-    def self.id(id)
+    def self.find(id)
       CSV.open('./support/sales.csv','r').each do |line|
         if id == line[0].to_i
           return self.new(line[0],line[1],line[2],line[3],line[4])
