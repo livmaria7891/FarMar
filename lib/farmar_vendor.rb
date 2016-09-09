@@ -35,8 +35,8 @@ class FarMar::Vendor
       markets = []
       all_markets = FarMar::Market.all
         all_markets.each do |market|
-        if market.id == @market_id
-          markets << FarMar::Market.find(@market_id)
+        if market.id == market_id
+          markets << FarMar::Market.find(market_id)
         end
       end
       return markets
@@ -47,7 +47,7 @@ class FarMar::Vendor
     products = []
     all_products = FarMar::Product.all
       all_products.each do |product|
-       if product.vendor_id == @id
+       if product.vendor_id == id
          products << FarMar::Product.find(product.id)
       end
     end

@@ -32,13 +32,13 @@ class FarMar::Sales
 
   def vendor
     #returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id
-    return FarMar::Vendor.find(@vendor_id)
+    return FarMar::Vendor.find(vendor_id)
 
   end
 
   def product
     #returns Product instance associated with this sale using FarMar::Sale product_id field
-    return FarMar::Product.find(@product_id)
+    return FarMar::Product.find(product_id)
   end
 
   def self.between(beginning_time, end_time)
