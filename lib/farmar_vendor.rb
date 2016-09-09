@@ -30,8 +30,6 @@ class FarMar::Vendor
     end
   end
 
-
-
   def market
       #returns Market instance associated with this vendor using Farmer::Vendor market_id field
       markets = []
@@ -58,10 +56,24 @@ class FarMar::Vendor
 
   def sales
     #returns a collection of FarMar::Sale instances that are associated by the vendor_id field
+      all_sales = FarMar::Sales.all
+      vendor_sales = []
+      all_sales.each do |s|
+        if id == s.vendor_id
+          vendor_sales << FarMar::Sales.find(s.id)
+        end
+      end
+      return vendor_sales
   end
 
   def revenue
     #returns the sum of all the vendor's sales(in cents)
+    revenue = 0
+    sales = self.sales
+    sales.each do |sale|
+     revenue += sale.amount
+    end
+    return revenue
   end
 
   def self.by_market(market_id)
@@ -70,8 +82,3 @@ class FarMar::Vendor
     return market.vendors
   end
 end
-
-# #print FarMar::Vendor.all
-#  tst = FarMar::Vendor.find(1)
-#  #print tst.inspect
-# print tst.market

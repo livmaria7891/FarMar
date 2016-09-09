@@ -40,7 +40,7 @@ class FarMar::Market
     all_vendors = FarMar::Vendor.all
     all_vendors.each do |v|
       if v.market_id == @id
-        v = FarMar::Vendor.find(@id)
+        v = FarMar::Vendor.find(v.id)
         vendors << v
       end
     end
